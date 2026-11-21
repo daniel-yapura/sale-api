@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(php artisan test:*)",
+      "Bash(php artisan route:list:*)",
+      "Bash(php artisan make:*)",
+      "Bash(php artisan migrate:status)",
+      "Bash(php artisan about:*)",
+      "Bash(php artisan config:show:*)",
+      "Bash(php artisan list:*)",
+      "Bash(vendor/bin/pest:*)",
+      "Bash(vendor/bin/pint:*)",
+      "Bash(composer install:*)",
+      "Bash(composer dump-autoload:*)",
+      "Bash(composer show:*)",
+      "Bash(npm run build:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "mcp__laravel-boost"
+    ],
+    "ask": [
+      "Bash(php artisan migrate:*)",
+      "Bash(php artisan db:*)",
+      "Bash(composer require:*)",
+      "Bash(composer update:*)",
+      "Bash(composer remove:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.testing)",
+      "Read(./.env.production)",
+      "Read(./.env.backup)",
+      "Edit(./.env)",
+      "Edit(./.env.testing)",
+      "Bash(php artisan migrate:fresh:*)",
+      "Bash(php artisan migrate:reset:*)",
+      "Bash(php artisan db:wipe:*)",
+      "Bash(rm -rf vendor:*)",
+      "Bash(git push --force:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh",
+            "timeout": 600
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/pint-format.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
