@@ -18,6 +18,8 @@ if [ ! -f .env ]; then
   cp .env.example .env
   sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
   sed -i 's/^DB_DATABASE=.*/DB_DATABASE=:memory:/' .env
+  sed -i 's/^CACHE_STORE=.*/CACHE_STORE=array/' .env
+  sed -i 's/^SESSION_DRIVER=.*/SESSION_DRIVER=array/' .env
   php artisan key:generate --ansi >&2
   php artisan jwt:secret --force >&2 || true
   grep -q '^KEY_ENCRYPT=' .env || echo 'KEY_ENCRYPT=local-dev-key' >> .env

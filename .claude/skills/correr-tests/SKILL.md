@@ -12,12 +12,12 @@ description: Corre la suite Pest de sale-api con SQLite en memoria, interpreta l
 ## 2. Ejecutar
 Suite completa:
 ```bash
-DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test
+CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test
 ```
 Un archivo o un test:
 ```bash
-DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest tests/Unit/SaleEntityTest.php
-DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest --filter="Crear producto"
+CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest tests/Unit/SaleEntityTest.php
+CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest --filter="Crear producto"
 ```
 Si falla por `APP_KEY`, `JWT_SECRET` o `KEY_ENCRYPT` faltantes, agregalos inline con valores de prueba, por ejemplo:
 `APP_KEY=base64:$(php -r 'echo base64_encode(random_bytes(32));') JWT_SECRET=test-secret KEY_ENCRYPT=test`.

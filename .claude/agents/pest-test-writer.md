@@ -27,7 +27,7 @@ Escribís tests con **Pest 3** para sale-api (Laravel 11, JWT con tymon/jwt-auth
 
 Corré solo lo que escribiste:
 ```bash
-DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest tests/Feature/MiTest.php
+CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest tests/Feature/MiTest.php
 ```
 Si un test falla por un bug real del código (no del test), no cambies el código de producción: reportalo con el test que lo demuestra.
 

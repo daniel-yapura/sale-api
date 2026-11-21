@@ -24,7 +24,7 @@ description: Crea una migración de base de datos segura en sale-api (tablas, co
 4. Actualizá la factory en `database/factories` y el seeder si corresponde.
 5. Verificá que sube y baja sin errores contra SQLite en memoria:
    ```bash
-   DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test
+   CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test
    ```
 6. **No corras `php artisan migrate` contra la base del usuario sin preguntar.** Mostrale el SQL con
    `php artisan migrate --pretend` y dejá que decida.

@@ -42,7 +42,7 @@ Creá `tests/Feature/<Recurso>ControllerTest.php` con Pest (ver `ProductControll
 ## 8. Verificar
 ```bash
 php artisan route:list --path=api
-DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest tests/Feature/<Recurso>ControllerTest.php
+CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: vendor/bin/pest tests/Feature/<Recurso>ControllerTest.php
 vendor/bin/pint --dirty
 ```
 Reportá al usuario la ruta creada, los archivos tocados y el resultado de los tests.

@@ -38,6 +38,6 @@ API REST de ventas en **Laravel 11** (PHP ^8.2) con autenticación **JWT** (`tym
 ## Entorno
 
 - La base por defecto es MariaDB (`.env.example`). Para tests sin base externa usá SQLite en memoria:
-  `DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test`.
+  `CACHE_STORE=array DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test`.
 - `.env` y `.env.testing` no se versionan. Hace falta `APP_KEY`, `JWT_SECRET` (`php artisan jwt:secret`) y `KEY_ENCRYPT`.
 - Claude no debe leer ni modificar archivos `.env*` salvo `.env.example`.
